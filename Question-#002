@@ -1,0 +1,38 @@
+Question Number:- #002                                                                                                     
+
+Question:- Find Unique-Occurences of elements  
+
+Difficulty :- EASY  
+
+Question's Link:- https://leetcode.com/problems/unique-number-of-occurrences/ 
+
+Solution:- 
+
+ PS:- I have used Brute Force and optimized it on the same with the help of discussion forums; 
+ Also I have taken advantage of constraints and input. 
+ Also I think if we have zero as a input in the array we may encounter some problems although 
+ that may be tackled by initiazlizing all the members of freq[] array either below -1000 or above 1000.
+                    
+       
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        int countArray[2001] = {0};
+        int n = arr.size();
+        for(int i = 0; i < n; i++){
+            countArray[arr[i] + 1000]++ ;
+        }
+        int freq[1001] = {0};
+        for(int i = 0; i < 2001; i++){
+            if(countArray[i] != 0){
+                freq[countArray[i]]++;
+            }
+        }
+        for(int i = 1; i < 1001; i++){
+            if(freq[i] > 1){
+                return false;
+            }
+        }
+        return true;
+    }
+}; 
